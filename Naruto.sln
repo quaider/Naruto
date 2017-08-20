@@ -1,17 +1,50 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Dependency.Abstraction", "src\Naruto.Dependency.Abstraction\Naruto.Dependency.Abstraction.csproj", "{7146D078-B8BC-444E-B333-422E660709D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Release|x86.ActiveCfg = Release|Any CPU
 		{7CA0B075-01D2-4D71-B88B-44FF22977138}.Release|x86.Build.0 = Release|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Debug|x86.Build.0 = Debug|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Release|x86.ActiveCfg = Release|Any CPU
+		{8530D94B-E294-43DF-924C-210A5966591C}.Release|x86.Build.0 = Release|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Debug|x86.Build.0 = Debug|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Release|x86.ActiveCfg = Release|Any CPU
+		{7146D078-B8BC-444E-B333-422E660709D1}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9A50DC7-C5B8-498F-B76E-52D6E7BCA480}
 	EndGlobalSection
 EndGlobal
