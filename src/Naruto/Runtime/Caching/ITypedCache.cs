@@ -4,36 +4,27 @@ using System.Threading.Tasks;
 namespace Naruto.Runtime.Caching
 {
     /// <summary>
-    /// Cache操作接口，from abp
+    /// 缓存操作泛型实现
     /// </summary>
-    public interface ICache : IDisposable
+    /// <typeparam name="TKey">键类型</typeparam>
+    /// <typeparam name="TValue">键值类型</typeparam>
+    public interface ITypedCache<TKey, TValue> : IDisposable
     {
         /// <summary>
-        /// 缓存的唯一名称
+        /// 缓存唯一名称
         /// </summary>
-        /// <value>The name.</value>
         string Name { get; }
 
         /// <summary>
-        /// 缓存项的默认滑动过期时间
-        /// 默认值: 60 分钟
-        /// 可从配置中修改
+        /// 默认滑动过期时间
         /// </summary>
+        /// <value>The default sliding expire time.</value>
         TimeSpan DefaultSlidingExpireTime { get; set; }
 
         /// <summary>
-        /// 缓存项的绝对过期时间
-        /// 默认值: null (没用到).
+        /// 内部缓存
         /// </summary>
-        TimeSpan? DefaultAbsoluteExpireTime { get; set; }
-
-        /// <summary>
-        /// 获取缓存项
-        /// </summary>
-        /// <returns>缓存项</returns>
-        /// <param name="key">Key</param>
-        /// <param name="factroy">如果没命中，则使用该工厂创建缓存项</param>
-        object Get(string key, Func<string, object> factroy);
+        ICache InternalCache { get; }
 
         /// <summary>
         /// 获取缓存项
@@ -41,57 +32,59 @@ namespace Naruto.Runtime.Caching
         /// <returns>缓存项</returns>
         /// <param name="key">Key</param>
         /// <param name="factory">如果没命中，则使用该工厂创建缓存项</param>
-        Task<object> GetAsync(string key, Func<string, Task<object>> factory);
+        TValue Get(TKey key, Func<TKey, TValue> factory);
+
+        /// <summary>
+        /// 获取缓存项
+        /// </summary>
+        /// <returns>缓存项</returns>
+        /// <param name="key">Key</param>
+        /// <param name="factory">如果没命中，则使用该工厂创建缓存项</param>
+        Task<TValue> GetAsync(TKey key, Func<TKey, Task<TValue>> factory);
 
         /// <summary>
         /// 获取缓存项，如果不存在则返回null
         /// </summary>
         /// <returns>缓存项或null</returns>
         /// <param name="key">Key</param>
-        object GetOrDefault(string key);
+        TValue GetOrDefault(TKey key);
 
         /// <summary>
         /// 获取缓存项，如果不存在则返回null
         /// </summary>
         /// <returns>缓存项或null</returns>
         /// <param name="key">Key</param>
-        Task<object> GetOrDefaultAsync(string key);
+        Task<TValue> GetOrDefaultAsync(TKey key);
 
         /// <summary>
         /// 设置缓存(存在则覆盖，不存在则添加)
-        /// 最多只能设置一种过期方式 (<paramref name="slidingExpireTime"/> or <paramref name="absoluteExpireTime"/>)
-        /// 如果都没设置，则使用 <see cref="DefaultAbsoluteExpireTime"/> 当其不为null时, 
-        /// 否则使用<see cref="DefaultSlidingExpireTime"/>
         /// </summary>
+        /// <returns>The set.</returns>
         /// <param name="key">Key</param>
         /// <param name="value">缓存项的值</param>
         /// <param name="slidingExpireTime">滑动过期时间</param>
-        /// <param name="absoluteExpireTime">绝对过期时间，优先级最高</param>
-        void Set(string key, object value, TimeSpan? slidingExpireTime = null, TimeSpan? absoluteExpireTime = null);
+        void Set(TKey key, TValue value, TimeSpan? slidingExpireTime = null);
 
         /// <summary>
         /// 设置缓存(存在则覆盖，不存在则添加)
-        /// 最多只能设置一种过期方式 (<paramref name="slidingExpireTime"/> or <paramref name="absoluteExpireTime"/>)
-        /// 如果都没设置，则使用 <see cref="DefaultAbsoluteExpireTime"/> 当其不为null时, 
-        /// 否则使用<see cref="DefaultSlidingExpireTime"/>
         /// </summary>
+        /// <returns>The set.</returns>
         /// <param name="key">Key</param>
         /// <param name="value">缓存项的值</param>
         /// <param name="slidingExpireTime">滑动过期时间</param>
-        /// <param name="absoluteExpireTime">绝对过期时间</param>
-        Task SetAsync(string key, object value, TimeSpan? slidingExpireTime = null, TimeSpan? absoluteExpireTime = null);
+        Task SetAsync(TKey key, TValue value, TimeSpan? slidingExpireTime = null);
 
         /// <summary>
         /// 删除指定key的缓存项
         /// </summary>
         /// <param name="key">Key</param>
-        void Remove(string key);
+        void Remove(TKey key);
 
         /// <summary>
         /// 删除指定key的缓存项
         /// </summary>
         /// <param name="key">Key</param>
-        Task RemoveAsync(string key);
+        Task RemoveAsync(TKey key);
 
         /// <summary>
         /// 清除所有缓存项
