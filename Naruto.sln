@@ -4,9 +4,11 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Dependency.Abstraction", "src\Naruto.Dependency.Abstraction\Naruto.Dependency.Abstraction.csproj", "{7146D078-B8BC-444E-B333-422E660709D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Dependency.Abstraction", "src\Naruto.Dependency.Abstraction\Naruto.Dependency.Abstraction.csproj", "{7146D078-B8BC-444E-B333-422E660709D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Dependency", "src\Naruto.Dependency\Naruto.Dependency.csproj", "{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,14 @@ Global
 		{7146D078-B8BC-444E-B333-422E660709D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7146D078-B8BC-444E-B333-422E660709D1}.Release|x86.ActiveCfg = Release|Any CPU
 		{7146D078-B8BC-444E-B333-422E660709D1}.Release|x86.Build.0 = Release|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Debug|x86.Build.0 = Debug|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F3B54D2-72E8-4F52-B401-A8E480ED36AE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
