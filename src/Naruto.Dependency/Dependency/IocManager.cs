@@ -22,6 +22,7 @@ namespace Naruto.Dependency
         private IocManager()
         {
             ContainerBuilder = new ContainerBuilder();
+            RegisterInstance<IIocManager>(this, LifetimeStyle.Singleton);
         }
 
         internal IContainer Build()
@@ -85,14 +86,14 @@ namespace Naruto.Dependency
 
         public void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class
         {
-            ContainerBuilder.RegisterInstance(instance).AsLifeTime(lifetime);
+            ContainerBuilder.RegisterInstance(instance).AsSelf().AsLifeTime(lifetime);
         }
 
         public void RegisterInstance<TService>(object instance, LifetimeStyle lifetime) where TService : class
         {
             var convert = instance as TService;
             if (convert == null) throw new InvalidCastException($"the parameter `{nameof(instance)}` can not be cast to type `{typeof(TService)}` ");
-            ContainerBuilder.RegisterInstance(convert).AsLifeTime(lifetime);
+            ContainerBuilder.RegisterInstance(convert).AsSelf().AsLifeTime(lifetime);
         }
 
         #endregion
