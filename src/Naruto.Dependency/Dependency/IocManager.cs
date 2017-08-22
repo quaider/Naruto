@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Naruto.Dependency.Abstraction;
+using Autofac;
+using Naruto.Dependency.Extensions;
 
 namespace Naruto.Dependency
 {
@@ -8,12 +10,9 @@ namespace Naruto.Dependency
     {
         public static IocManager Instance { get; private set; }
 
-        private IServiceCollection _serviceCollection;
+        protected ContainerBuilder ContainerBuilder;
+        protected IContainer Container;
 
-        /// <summary>
-        /// 其初始化推迟到应用层
-        /// </summary>
-        private IIocResolver _iocResolver;
 
         static IocManager()
         {
@@ -22,47 +21,95 @@ namespace Naruto.Dependency
 
         private IocManager()
         {
-            _serviceCollection = new ServiceCollection();
+            ContainerBuilder = new ContainerBuilder();
         }
+
+        internal IContainer Build()
+        {
+            return Container = ContainerBuilder.Build();
+        }
+
+        #region Resolve
 
         public T Resolve<T>()
         {
-            throw new NotImplementedException();
+            return Container.Resolve<T>();
         }
 
         public object Resolve(Type type)
         {
-            throw new NotImplementedException();
+            return Container.Resolve(type);
         }
 
         public T Resolve<T>(Type type)
         {
-            throw new NotImplementedException();
+            return (T)Container.Resolve(type);
         }
 
+        //todo 待测试
         public IEnumerable<T> ResolveAll<T>()
         {
-            throw new NotImplementedException();
+            return Container.Resolve<IEnumerable<T>>();
         }
 
+        //todo 待测试
         public IEnumerable<object> ResolveAll(Type type)
         {
-            throw new NotImplementedException();
+            var genericType = typeof(IEnumerable<>).MakeGenericType(type);
+            return Container.Resolve(genericType) as IEnumerable<object>;
         }
 
-        public void Dispose()
+        #endregion
+
+        #region Register
+
+        public void Register<TService>(LifetimeStyle lifetime)
         {
-
+            ContainerBuilder.RegisterType<TService>().AsLifeTime(lifetime);
         }
+
+        public void Register(Type type, LifetimeStyle lifetime)
+        {
+            ContainerBuilder.RegisterType(type).AsLifeTime(lifetime);
+        }
+
+        public void Register<TService, TImpl>(LifetimeStyle lifetime)
+        {
+            ContainerBuilder.RegisterType<TImpl>().As<TService>().AsLifeTime(lifetime);
+        }
+
+        public void Register(Type service, Type impl, LifetimeStyle lifetime)
+        {
+            ContainerBuilder.RegisterType(impl).As(service).AsLifeTime(lifetime);
+        }
+
+        public void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class
+        {
+            ContainerBuilder.RegisterInstance(instance).AsLifeTime(lifetime);
+        }
+
+        public void RegisterInstance<TService>(object instance, LifetimeStyle lifetime) where TService : class
+        {
+            var convert = instance as TService;
+            if (convert == null) throw new InvalidCastException($"the parameter `{nameof(instance)}` can not be cast to type `{typeof(TService)}` ");
+            ContainerBuilder.RegisterInstance(convert).AsLifeTime(lifetime);
+        }
+
+        #endregion
 
         public bool IsRegistered(Type type)
         {
-            throw new NotImplementedException();
+            return Container.IsRegistered(type);
         }
 
         public bool IsRegistered<T>()
         {
-            throw new NotImplementedException();
+            return Container.IsRegistered<T>();
+        }
+
+        public void Dispose()
+        {
+            Container.Dispose();
         }
     }
 }

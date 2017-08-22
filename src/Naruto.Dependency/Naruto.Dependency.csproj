@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Naruto.Dependency.Abstraction\Naruto.Dependency.Abstraction.csproj" />
   </ItemGroup>
 
