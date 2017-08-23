@@ -10,9 +10,8 @@ namespace Naruto.Dependency
     {
         public static IocManager Instance { get; private set; }
 
-        protected ContainerBuilder ContainerBuilder;
+        internal ContainerBuilder ContainerBuilder;
         protected IContainer Container;
-
 
         static IocManager()
         {

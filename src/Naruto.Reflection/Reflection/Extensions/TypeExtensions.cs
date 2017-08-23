@@ -40,7 +40,7 @@ namespace Naruto.Reflection.Extensions
         }
 
         /// <summary>
-        /// 判断类型是否为集合类型
+        /// 判断类型是否为可枚举类型(是否实现了 <see cref="IEnumerable"/> )
         /// </summary>
         /// <param name="type">要处理的类型</param>
         /// <returns>是返回True，不是返回False</returns>
@@ -63,6 +63,7 @@ namespace Naruto.Reflection.Extensions
         public static bool IsGenericAssignableFrom(this Type genericType, Type type)
         {
             if (genericType == null || type == null) return false;
+
             if (!genericType.IsGenericType)
             {
                 throw new ArgumentException("该功能只支持泛型类型的调用，非泛型类型可使用 IsAssignableFrom 方法。");
@@ -97,8 +98,8 @@ namespace Naruto.Reflection.Extensions
         /// <summary>
         /// 判断类型是否为Nullable类型
         /// </summary>
-        /// <param name="type"> 要处理的类型 </param>
-        /// <returns> 是返回True，不是返回False </returns>
+        /// <param name="type">要处理的类型</param>
+        /// <returns>是返回True，不是返回False</returns>
         public static bool IsNullableType(this Type type)
         {
             return (type != null) && type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
