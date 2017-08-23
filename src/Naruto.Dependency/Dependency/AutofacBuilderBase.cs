@@ -1,7 +1,7 @@
-﻿using Naruto.Dependency.Abstraction;
-using System;
+﻿using System;
 using System.Reflection;
 using Autofac;
+using Naruto.Dependency.Abstraction;
 
 namespace Naruto.Dependency
 {

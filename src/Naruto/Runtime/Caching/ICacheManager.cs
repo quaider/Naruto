@@ -20,5 +20,15 @@ namespace Naruto.Runtime.Caching
         /// <param name="name">缓存名称</param>
         /// <returns><see cref="ICache"/></returns>
         ICache GetCache(string name);
+
+        /// <summary>
+        /// 获取强类型的 <see cref="ICache"/>
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="cacheManager"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        ITypedCache<TKey, TValue> GetCache<TKey, TValue>(string name);
     }
 }

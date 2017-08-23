@@ -36,6 +36,11 @@ namespace Naruto.Runtime.Caching
             });
         }
 
+        public ITypedCache<TKey, TValue> GetCache<TKey, TValue>(string name)
+        {
+            return GetCache(name).AsTyped<TKey, TValue>();
+        }
+
         /// <summary>
         /// Used to create actual cache implementation.
         /// </summary>

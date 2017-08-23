@@ -46,6 +46,11 @@ namespace Naruto.Dependency
             return (T)Container.Resolve(type);
         }
 
+        public T Resolve<T>(string name)
+        {
+            return Container.ResolveNamed<T>(name);
+        }
+
         //todo 待测试
         public IEnumerable<T> ResolveAll<T>()
         {
@@ -83,6 +88,11 @@ namespace Naruto.Dependency
             ContainerBuilder.RegisterType(impl).As(service).AsLifeTime(lifetime);
         }
 
+        public void Register<TService>(string name, LifetimeStyle lifetime)
+        {
+            ContainerBuilder.RegisterType<TService>().Named<TService>(name).AsLifeTime(lifetime);
+        }
+
         public void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class
         {
             ContainerBuilder.RegisterInstance(instance).AsSelf().AsLifeTime(lifetime);
@@ -93,6 +103,11 @@ namespace Naruto.Dependency
             var convert = instance as TService;
             if (convert == null) throw new InvalidCastException($"the parameter `{nameof(instance)}` can not be cast to type `{typeof(TService)}` ");
             ContainerBuilder.RegisterInstance(convert).AsSelf().AsLifeTime(lifetime);
+        }
+
+        public void RegisterInstance<TService>(string name, object instance, LifetimeStyle lifetime) where TService : class
+        {
+            ContainerBuilder.RegisterInstance(instance).Named<TService>(name).AsLifeTime(lifetime);
         }
 
         #endregion

@@ -18,6 +18,8 @@ namespace Naruto.Dependency.Abstraction
 
         void Register<TService>(LifetimeStyle lifetime);
 
+        void Register<TService>(string name, LifetimeStyle lifetime);
+
         void Register(Type type, LifetimeStyle lifetime);
 
         void Register<TService, TImpl>(LifetimeStyle lifetime);
@@ -27,5 +29,7 @@ namespace Naruto.Dependency.Abstraction
         void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class;
 
         void RegisterInstance<TService>(object instance, LifetimeStyle lifetime) where TService : class;
+
+        void RegisterInstance<TService>(string name, object instance, LifetimeStyle lifetime) where TService : class;
     }
 }

@@ -32,6 +32,13 @@ namespace Naruto.Dependency.Abstraction
         T Resolve<T>(Type type);
 
         /// <summary>
+        /// 获取指定名称的实例
+        /// </summary>
+        /// <typeparam name="T">实例的类型</typeparam>
+        /// <param name="name">注册时提供的名称</param>
+        T Resolve<T>(string name);
+
+        /// <summary>
         /// 获取指定类型的所有实例
         /// </summary>
         /// <typeparam name="T">待获取对象的类型</typeparam>
