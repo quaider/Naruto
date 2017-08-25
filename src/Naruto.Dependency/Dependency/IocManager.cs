@@ -26,7 +26,7 @@ namespace Naruto.Dependency
 
         internal IContainer Build()
         {
-            return Container = ContainerBuilder.Build();
+            return Container ?? (Container = ContainerBuilder.Build());
         }
 
         #region Resolve

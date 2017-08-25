@@ -11,7 +11,6 @@ namespace Naruto.Dependency.Installers
         {
             manager.Register<ICachingConfiguration, CachingConfiguration>(LifetimeStyle.Singleton);
             manager.Register<IStartupConfiguration, StartupConfiguration>(LifetimeStyle.Singleton);
-            manager.Register<ITypeFinder, AppDomainTypeFinder>(LifetimeStyle.Singleton);
         }
     }
 }

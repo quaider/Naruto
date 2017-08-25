@@ -120,5 +120,10 @@ namespace Naruto.Reflection.Extensions
 
             return type;
         }
+
+        public static T CreateInstance<T>(this Type type, params object[] parms) where T : class
+        {
+            return Activator.CreateInstance(type, parms) as T;
+        }
     }
 }

@@ -2,22 +2,22 @@
 using System.Reflection;
 using Autofac;
 using Naruto.Dependency.Abstraction;
+using Naruto.Reflection;
 
 namespace Naruto.Dependency
 {
     /// <summary>
     /// Autofac依赖注入构建器， 承担应用程序初始化依赖注入的工作
     /// </summary>
-    public class AutofacBuilderBase : IocBuilderBase
+    public abstract class AutofacBuilderBase : IocBuilderBase
     {
-        public AutofacBuilderBase(IIocManager iocManager) : base(iocManager)
+        protected AutofacBuilderBase(IIocManager iocManager, ITypeFinder finder) : base(iocManager, finder)
         {
         }
 
-        protected override IServiceProvider Build(IIocManager iocManager, params Assembly[] assemblies)
+        protected override void Build(IIocManager iocManager, params Assembly[] assemblies)
         {
             RegisterInternal(assemblies);
-            return new DefaultServiceProvider(IocManager.Instance);
         }
 
         private static void RegisterInternal(params Assembly[] assemblies)

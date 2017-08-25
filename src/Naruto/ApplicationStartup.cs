@@ -1,28 +1,44 @@
 ﻿using Naruto.Dependency.Abstraction;
 using Naruto.Dependency.Installers;
+using Naruto.Reflection;
+using Naruto.Reflection.Extensions;
+using System.Linq;
 
 namespace Naruto
 {
+    /// <summary>
+    /// 应用程序启动初始化工作
+    /// </summary>
     public class ApplicationStartup
     {
+        public ITypeFinder Finder { get; }
+
         public IIocManager IocManager { get; }
 
         public ApplicationStartup(IIocManager iocManager)
         {
             IocManager = iocManager;
+            Finder = new AppDomainTypeFinder();
+
+            IocManager.RegisterInstance(Finder, LifetimeStyle.Singleton);
         }
 
         public virtual void Initialize()
         {
-            RegisterApplicationStartup();
-
             var installer = new NarutoInstaller();
             installer.Install(IocManager);
+
+            RegisterBuilders();
         }
 
-        private void RegisterApplicationStartup()
+        public void RegisterBuilders()
         {
-            IocManager.RegisterInstance(this, LifetimeStyle.Singleton);
+            var builderTypes = Finder.OfType<IIocBuilder>();
+            foreach (var type in builderTypes)
+            {
+                var builder = type.CreateInstance<IIocBuilder>(IocManager, Finder);
+                if (builder != null) builder.Build();
+            }
         }
     }
 }
