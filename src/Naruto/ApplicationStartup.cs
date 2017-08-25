@@ -1,4 +1,5 @@
-﻿using Naruto.Dependency.Abstraction;
+﻿using Naruto.Dependency;
+using Naruto.Dependency.Abstraction;
 using Naruto.Dependency.Installers;
 using Naruto.Reflection;
 using Naruto.Reflection.Extensions;
@@ -24,19 +25,14 @@ namespace Naruto
 
         public virtual void Initialize()
         {
-            new NarutoInstaller().Install(IocManager);
-
             RegisterBuilders();
         }
 
         public void RegisterBuilders()
         {
             var builderTypes = Finder.OfType<IIocBuilder>();
-            foreach (var type in builderTypes)
-            {
-                var builder = type.CreateInstance<IIocBuilder>(IocManager, Finder);
-                if (builder != null) builder.Build();
-            }
+
+            new AutofacBuilderBase(IocManager, Finder).Build();
         }
     }
 }

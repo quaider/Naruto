@@ -1,17 +1,19 @@
 ﻿using Autofac;
 using Naruto.Configuration.Startup;
 using Naruto.Dependency.Abstraction;
+using Naruto.Reflection;
 using Naruto.Runtime.Caching;
 using Naruto.Runtime.Caching.Configuration;
 using System;
 
 namespace Naruto.Dependency.Installers
 {
-    internal class NarutoInstaller
+    internal class NarutoInstaller : IDependencyInstaller
     {
-        public void Install(IIocManager manager)
+        public void Install(IIocManager manager, ITypeFinder finder)
         {
             manager.Register<ICachingConfiguration, CachingConfiguration>(LifetimeStyle.Singleton);
+
             IocManager.Instance.Register<IStartupConfiguration>(ctx =>
             {
                 var startupConfig = new StartupConfiguration(manager);
@@ -44,5 +46,7 @@ namespace Naruto.Dependency.Installers
             }, LifetimeStyle.Singleton);
 
         }
+
+        public int Order => int.MinValue;
     }
 }

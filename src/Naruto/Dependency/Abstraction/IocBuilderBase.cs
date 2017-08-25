@@ -7,9 +7,8 @@ namespace Naruto.Dependency.Abstraction
     /// <summary>
     /// 依赖注入构建器基类
     /// </summary>
-    public abstract class IocBuilderBase : IIocBuilder
+    internal abstract class IocBuilderBase : IIocBuilder
     {
-        private bool _isBuilded;
         private IIocManager _iocManager;
         protected ITypeFinder Finder { get; private set; }
 
@@ -23,7 +22,6 @@ namespace Naruto.Dependency.Abstraction
         {
             RegisterCustomTypes(_iocManager);
             Build(_iocManager, GetAssemblies());
-            _isBuilded = true;
         }
 
         /// <summary>

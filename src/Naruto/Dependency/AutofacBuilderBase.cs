@@ -1,17 +1,24 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Autofac;
 using Naruto.Dependency.Abstraction;
 using Naruto.Reflection;
+using Naruto.Dependency.Installers;
+using Naruto.Reflection.Extensions;
+using System.Linq;
 
 namespace Naruto.Dependency
 {
     /// <summary>
     /// Autofac依赖注入构建器， 承担应用程序初始化依赖注入的工作
     /// </summary>
-    public abstract class AutofacBuilderBase : IocBuilderBase
+    internal class AutofacBuilderBase : IocBuilderBase
     {
-        protected AutofacBuilderBase(IIocManager iocManager, ITypeFinder finder) : base(iocManager, finder)
+        internal AutofacBuilderBase(IIocManager iocManager, ITypeFinder finder) : base(iocManager, finder)
+        {
+
+        }
+
+        protected override void RegisterCustomTypes(IIocManager iocManager)
         {
         }
 
@@ -43,6 +50,24 @@ namespace Naruto.Dependency
                .AsImplementedInterfaces()
                .As<ISingletonDependency>()
                .AsSelf();
+
+            InstallInstallers();
+        }
+
+        private void InstallInstallers()
+        {
+            //保证在其他模块之前执行
+            new NarutoInstaller().Install(IocManager.Instance, Finder);
+
+            var installers = Finder.OfType<IDependencyInstaller>()
+                .Where(f => f != typeof(NarutoInstaller))
+                .Select(f => f.CreateInstance<IDependencyInstaller>())
+                .OrderBy(f => f.Order);
+
+            foreach (var installer in installers)
+            {
+                installer.Install(IocManager.Instance, Finder);
+            }
         }
     }
 }
