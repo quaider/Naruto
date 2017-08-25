@@ -2,7 +2,6 @@
 using Naruto.Dependency.Installers;
 using Naruto.Reflection;
 using Naruto.Reflection.Extensions;
-using System.Linq;
 
 namespace Naruto
 {
@@ -25,8 +24,7 @@ namespace Naruto
 
         public virtual void Initialize()
         {
-            var installer = new NarutoInstaller();
-            installer.Install(IocManager);
+            new NarutoInstaller().Install(IocManager);
 
             RegisterBuilders();
         }

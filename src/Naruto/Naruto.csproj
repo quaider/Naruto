@@ -4,11 +4,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Nito.AsyncEx" Version="5.0.0-pre-02" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Naruto.Dependency.Abstraction\Naruto.Dependency.Abstraction.csproj" />
+    <ProjectReference Include="..\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
 </Project>

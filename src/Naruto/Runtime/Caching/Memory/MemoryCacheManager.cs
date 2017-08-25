@@ -15,9 +15,7 @@ namespace Naruto.Runtime.Caching.Memory
         protected override ICache CreateCacheImplementation(string name)
         {
             var cache = new MemoryCache(name);
-            IocManager.RegisterInstance<MemoryCache>(name, cache, LifetimeStyle.Transient);
 
-            //autofac must build first, so we can only return the objct we just created
             return cache;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
 using Naruto.Reflection;
+using Naruto.Dependency.Installers;
 
 namespace Naruto.AspNetCore
 {
@@ -13,12 +14,7 @@ namespace Naruto.AspNetCore
         //自定义映射
         protected override void RegisterCustomTypes(IIocManager iocManager)
         {
-
-        }
-
-        private void ConfigureCaches()
-        {
-
+            
         }
     }
 }

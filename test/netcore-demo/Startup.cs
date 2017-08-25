@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Naruto.AspNetCore;
+using Naruto.Dependency;
+using Naruto.Configuration.Startup;
 
 namespace netcore_demo
 {
