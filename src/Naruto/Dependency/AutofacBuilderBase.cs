@@ -1,10 +1,11 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using Autofac;
 using Naruto.Dependency.Abstraction;
 using Naruto.Reflection;
 using Naruto.Dependency.Installers;
 using Naruto.Reflection.Extensions;
-using System.Linq;
+
 
 namespace Naruto.Dependency
 {

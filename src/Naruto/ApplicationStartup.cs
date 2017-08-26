@@ -1,8 +1,6 @@
 ﻿using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
-using Naruto.Dependency.Installers;
 using Naruto.Reflection;
-using Naruto.Reflection.Extensions;
 
 namespace Naruto
 {
