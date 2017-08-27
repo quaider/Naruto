@@ -238,8 +238,6 @@ namespace Naruto.Reflection
         /// <summary>
         /// 加载并返回指定的程序集
         /// </summary>
-        /// <param name="addedAssemblyNames"></param>
-        /// <param name="assemblies"></param>
         protected void GetConfiguredAssemblies()
         {
             foreach (var assemblyName in AssemblyNames)
