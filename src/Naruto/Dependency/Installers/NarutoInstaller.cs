@@ -5,6 +5,7 @@ using Naruto.Dependency.Abstraction;
 using Naruto.Reflection;
 using Naruto.Runtime.Caching;
 using Naruto.Runtime.Caching.Configuration;
+using Naruto.Plugins;
 
 namespace Naruto.Dependency.Installers
 {
@@ -12,6 +13,7 @@ namespace Naruto.Dependency.Installers
     {
         public void Install(IIocManager manager, ITypeFinder finder)
         {
+            manager.Register<IPluginFinder, PluginFinder>(LifetimeStyle.Scoped);
             manager.Register<ICachingConfiguration, CachingConfiguration>(LifetimeStyle.Singleton);
             InstallCaches(manager);
         }

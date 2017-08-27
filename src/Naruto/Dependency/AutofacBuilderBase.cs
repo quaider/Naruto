@@ -14,7 +14,7 @@ namespace Naruto.Dependency
     /// </summary>
     internal class AutofacBuilderBase : IocBuilderBase
     {
-        internal AutofacBuilderBase(IIocManager iocManager, ITypeFinder finder) : base(iocManager, finder)
+        internal AutofacBuilderBase(IIocManager iocManager) : base(iocManager, AppDomainTypeFinder.Instance)
         {
 
         }

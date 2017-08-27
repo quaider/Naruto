@@ -1,5 +1,6 @@
 ﻿using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
+using Naruto.Plugins;
 using Naruto.Reflection;
 
 namespace Naruto
@@ -9,28 +10,25 @@ namespace Naruto
     /// </summary>
     public class ApplicationStartup
     {
-        public ITypeFinder Finder { get; }
-
         public IIocManager IocManager { get; }
 
         public ApplicationStartup(IIocManager iocManager)
         {
             IocManager = iocManager;
-            Finder = new AppDomainTypeFinder();
-
-            IocManager.RegisterInstance(Finder, LifetimeStyle.Singleton);
         }
 
         public virtual void Initialize()
         {
+            PluginManager.Instance.Initialize();
+
             RegisterBuilders();
         }
 
         public void RegisterBuilders()
         {
-            var builderTypes = Finder.OfType<IIocBuilder>();
+            var builderTypes = AppDomainTypeFinder.Instance.OfType<IIocBuilder>();
 
-            new AutofacBuilderBase(IocManager, Finder).Build();
+            new AutofacBuilderBase(IocManager).Build();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace netcore_demo
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddMvcCore();
 
             return services.AddNaruto(options => { });
         }

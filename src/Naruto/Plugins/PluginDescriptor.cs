@@ -9,6 +9,8 @@ namespace Naruto.Plugins
     /// </summary>
     public class PluginDescriptor
     {
+        public PluginDescriptor() { }
+
         public PluginDescriptor(Assembly referencedAssembly, FileInfo originalAssemblyFile, Type pluginType)
         {
             PluginType = pluginType;
@@ -25,6 +27,8 @@ namespace Naruto.Plugins
         /// 当前插件所引用的程序集
         /// </summary>
         public Assembly ReferencedAssembly { get; set; }
+
+        public string PluginFileName { get; set; }
 
         /// <summary>
         /// 当前插件的程序集文件信息

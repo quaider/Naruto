@@ -5,19 +5,19 @@ namespace Naruto.Plugins
     {
         public BasePlugin()
         {
-            
-        }
-
-        public abstract PluginDescriptor PluginDescriptor { get; set; }
-
-        public void Install()
-        {
 
         }
 
-        public void Uninstall()
-        {
+        public virtual PluginDescriptor PluginDescriptor { get; set; }
 
+        public virtual void Install()
+        {
+            PluginManager.MarkPluginAsInstalled(PluginDescriptor.SystemName);
+        }
+
+        public virtual void Uninstall()
+        {
+            PluginManager.MarkPluginAsUninstalled(PluginDescriptor.SystemName);
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Naruto.Reflection
@@ -32,7 +30,11 @@ namespace Naruto.Reflection
 
         #endregion
 
+        private AppDomainTypeFinder() { }
+
         #region 属性
+
+        public static AppDomainTypeFinder Instance => new AppDomainTypeFinder();
 
         /// <summary>
         /// 当前应用程序域
