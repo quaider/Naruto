@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Naruto.Constant;
 using Naruto.Reflection;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Naruto.AspNetCore
 {
@@ -29,6 +30,18 @@ namespace Naruto.AspNetCore
             NarutoPath.AppBaseDirectory = hostingEnvironment.ContentRootPath;
 
             var startup = AddApplicationStartup();
+
+            var mvcBuilder = services.AddMvcCore();
+
+            startup.InitializePlugin((assemblies) =>
+            {
+                foreach (var ass in assemblies)
+                {
+                    mvcBuilder.PartManager.ApplicationParts.Add(new AssemblyPart(ass));
+                }
+
+            });
+
             startup.Initialize();
 
             //可做一些与services的集成操作

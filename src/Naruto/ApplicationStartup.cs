@@ -1,4 +1,7 @@
-﻿using Naruto.Dependency;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
 using Naruto.Plugins;
 using Naruto.Reflection;
@@ -17,11 +20,15 @@ namespace Naruto
             IocManager = iocManager;
         }
 
-        public virtual void Initialize()
+        public void Initialize()
+        {
+            RegisterBuilders();
+        }
+
+        public void InitializePlugin(Action<IReadOnlyList<Assembly>> action)
         {
             PluginManager.Instance.Initialize();
-
-            RegisterBuilders();
+            action(PluginManager.Instance.GetManualReferencedAssembly());
         }
 
         public void RegisterBuilders()

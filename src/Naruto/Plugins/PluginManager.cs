@@ -7,6 +7,7 @@ using Naruto.Resources;
 using System.Diagnostics;
 using System.Reflection;
 using Naruto.Reflection;
+using System.Collections.Immutable;
 
 namespace Naruto.Plugins
 {
@@ -57,7 +58,19 @@ namespace Naruto.Plugins
                 _baseLibs.AddRange(GetAllAssemblyNamesFromPath(Environment.CurrentDirectory));
         }
 
+        private List<Assembly> _toBeManualReferencedAssemblies => new List<Assembly>();
+
         public IEnumerable<PluginDescriptor> ReferencedPlugins { get; set; }
+
+        /// <summary>
+        /// 需自行手动添加到引用的程序集， 如BuilderManager or ApplicationManager
+        /// 这非常重要，由于不了解ApplicationManager导致浪费了太多时间
+        /// </summary>
+        /// <value>To be manual referenced assemblies.</value>
+        public IReadOnlyList<Assembly> GetManualReferencedAssembly()
+        {
+            return _toBeManualReferencedAssemblies.ToImmutableList();
+        }
 
         /// <summary>
         /// 初始化插件
@@ -107,7 +120,7 @@ namespace Naruto.Plugins
                     //复制该dll到 plugin/bin
                     item.descriptor.ReferencedAssembly = CopyToPluginBinFolder(item.descriptor.OriginalAssemblyFile);
 
-                    //复制其他dll 如果 还没有加载
+                    //复制其他dll 如果还没有加载
                     foreach (var dllFile in pluginDlls
                         .Where(f => !f.Name.Equals(item.descriptor.OriginalAssemblyFile.Name, StringComparison.InvariantCultureIgnoreCase))
                         .Where(f => !IsAlreadyLoaded(f)))
@@ -219,6 +232,10 @@ namespace Naruto.Plugins
 
             var destFile = dllFile.CopyTo(Path.Combine(pluginCopyDir.FullName, dllFile.Name), true);
             var assembly = Assembly.LoadFile(destFile.FullName);
+
+            Debug.WriteLine("Adding to ToBeManualReferencedAssemblies: '{0}'", assembly.FullName);
+            if (!_toBeManualReferencedAssemblies.Contains(assembly))
+                _toBeManualReferencedAssemblies.Add(assembly);
 
             return assembly;
         }

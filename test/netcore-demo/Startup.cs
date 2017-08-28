@@ -12,6 +12,7 @@ using Naruto.Configuration.Startup;
 using Naruto.Reflection;
 using Naruto.Plugins;
 using Naruto.Reflection.Extensions;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace netcore_demo
 {
@@ -27,9 +28,6 @@ namespace netcore_demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddMvcCore();
-
             return services.AddNaruto(options => { });
         }
 
@@ -52,6 +50,8 @@ namespace netcore_demo
                 var ins = t.CreateInstance<IPlugin>();
                 //ins.Install();
             }
+
+            //ApplicationPartManager: http://www.cnblogs.com/Leo_wl/p/6078434.html
 
             app.UseStaticFiles();
 
