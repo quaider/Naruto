@@ -29,7 +29,7 @@ namespace Naruto.Plugins
         /// <summary>
         /// 插件dll引用目录(AppDomain从此处bin中加载程序集)
         /// </summary>
-        private const string PluginPathCopy = "~/plugins/bin";
+        private const string PluginPathCopy = @"~/plugins/bin";
 
         private readonly ReaderWriterLockSlim _resourceLock = new ReaderWriterLockSlim();
 

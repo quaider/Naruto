@@ -3,7 +3,6 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
@@ -13,5 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Naruto.AspNetCore\Naruto.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\Naruto\Naruto.csproj" />
+    <ProjectReference Include="..\..\src\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
 </Project>

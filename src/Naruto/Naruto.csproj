@@ -10,9 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Naruto.Reflection\Naruto.Reflection.csproj" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <ProjectReference Include="..\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
 </Project>

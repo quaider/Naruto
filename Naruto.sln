@@ -2,21 +2,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Reflection", "src\Naruto.Reflection\Naruto.Reflection.csproj", "{AA555234-0EA5-486E-B1D9-9A653DF96BD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.Reflection", "src\Naruto.Reflection\Naruto.Reflection.csproj", "{AA555234-0EA5-486E-B1D9-9A653DF96BD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F30D2E9-8E25-48DD-91ED-94ECAEE5EFA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EFAA8D0B-70AC-4FDB-9FD8-3625759FEA50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcore-demo", "test\netcore-demo\netcore-demo.csproj", "{85BA8E72-2A14-4969-9440-0E17B728DDD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netcore-demo", "test\netcore-demo\netcore-demo.csproj", "{85BA8E72-2A14-4969-9440-0E17B728DDD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.AspNetCore", "src\Naruto.AspNetCore\Naruto.AspNetCore.csproj", "{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginTest", "test\PluginTest\PluginTest.csproj", "{02F1AE78-9C98-4295-B59E-E1043772167A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naruto.AspNetCore", "src\Naruto.AspNetCore\Naruto.AspNetCore.csproj", "{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,14 +64,6 @@ Global
 		{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}.Release|x86.ActiveCfg = Release|Any CPU
 		{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}.Release|x86.Build.0 = Release|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Debug|x86.Build.0 = Debug|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Release|x86.ActiveCfg = Release|Any CPU
-		{02F1AE78-9C98-4295-B59E-E1043772167A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,7 +74,6 @@ Global
 		{AA555234-0EA5-486E-B1D9-9A653DF96BD0} = {3F30D2E9-8E25-48DD-91ED-94ECAEE5EFA8}
 		{85BA8E72-2A14-4969-9440-0E17B728DDD1} = {EFAA8D0B-70AC-4FDB-9FD8-3625759FEA50}
 		{CE70E2CC-BBD2-405A-8490-F9B5C1A99959} = {3F30D2E9-8E25-48DD-91ED-94ECAEE5EFA8}
-		{02F1AE78-9C98-4295-B59E-E1043772167A} = {EFAA8D0B-70AC-4FDB-9FD8-3625759FEA50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9A50DC7-C5B8-498F-B76E-52D6E7BCA480}

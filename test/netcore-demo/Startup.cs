@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Naruto.AspNetCore;
 using Naruto.Dependency;
 using Naruto.Configuration.Startup;
+using Naruto.Reflection;
+using Naruto.Plugins;
+using Naruto.Reflection.Extensions;
 
 namespace netcore_demo
 {
@@ -43,6 +46,13 @@ namespace netcore_demo
                 app.UseExceptionHandler("/Error");
             }
 
+            var types = AppDomainTypeFinder.Instance.OfType<IPlugin>();
+            foreach (var t in types)
+            {
+                var ins = t.CreateInstance<IPlugin>();
+                //ins.Install();
+            }
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -51,6 +61,8 @@ namespace netcore_demo
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

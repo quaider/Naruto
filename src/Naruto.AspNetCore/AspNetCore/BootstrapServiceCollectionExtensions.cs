@@ -4,12 +4,10 @@ using Autofac.Extensions.DependencyInjection;
 using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
 using Naruto.Dependency.Extensions;
-using Naruto.Plugins;
 using Microsoft.AspNetCore.Hosting;
 using Naruto.Constant;
 using Naruto.Reflection;
 using System.Linq;
-using Autofac;
 
 namespace Naruto.AspNetCore
 {
@@ -31,10 +29,10 @@ namespace Naruto.AspNetCore
             NarutoPath.AppBaseDirectory = hostingEnvironment.ContentRootPath;
 
             var startup = AddApplicationStartup();
-            startup.startup.Initialize();
+            startup.Initialize();
 
             //可做一些与services的集成操作
-            IContainer container = services.Populate(builder => builder.Populate(services));
+            var container = services.Populate(builder => builder.Populate(services));
 
             AppDomain.CurrentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
             {
@@ -50,12 +48,11 @@ namespace Naruto.AspNetCore
             return new AutofacServiceProvider(container);
         }
 
-        private static (ApplicationStartup startup, IocManager manager) AddApplicationStartup()
+        private static ApplicationStartup AddApplicationStartup()
         {
-            var iocManager = IocManager.Instance;
-            ApplicationStartup startup = new ApplicationStartup(iocManager);
-            iocManager.RegisterInstance(startup, LifetimeStyle.Singleton);
-            return (startup, iocManager);
+            ApplicationStartup startup = new ApplicationStartup(IocManager.Instance);
+            IocManager.Instance.RegisterInstance(startup, LifetimeStyle.Singleton);
+            return startup;
         }
     }
 }

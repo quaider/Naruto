@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Naruto\Naruto.csproj" />
+    <ProjectReference Include="..\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
 
 </Project>
