@@ -31,7 +31,10 @@ namespace Naruto.AspNetCore
 
             var startup = AddApplicationStartup();
 
-            var mvcBuilder = services.AddMvcCore();
+            var mvcBuilder = services.AddMvc(opt =>
+            {
+                
+            });
 
             startup.InitializePlugin((assemblies) =>
             {

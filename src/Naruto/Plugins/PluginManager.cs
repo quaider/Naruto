@@ -30,7 +30,7 @@ namespace Naruto.Plugins
         /// <summary>
         /// 插件dll引用目录(AppDomain从此处bin中加载程序集)
         /// </summary>
-        private const string PluginPathCopy = @"~/plugins/bin";
+        private const string PluginPathCopy = @"~/plugins/bin";
 
         private readonly ReaderWriterLockSlim _resourceLock = new ReaderWriterLockSlim();
 
@@ -41,7 +41,12 @@ namespace Naruto.Plugins
 
         private ITypeFinder _finder;
 
-        public static PluginManager Instance => new PluginManager();
+        public static PluginManager Instance { get; }
+
+        static PluginManager()
+        {
+            Instance = new PluginManager();
+        }
 
         private PluginManager()
         {
@@ -56,9 +61,11 @@ namespace Naruto.Plugins
             //Environment.CurrentDirectory 当前应用程序的根目录(貌似这里通常不会有dll存在)
             if (!domainBaseDir.Equals(Environment.CurrentDirectory, StringComparison.InvariantCultureIgnoreCase))
                 _baseLibs.AddRange(GetAllAssemblyNamesFromPath(Environment.CurrentDirectory));
+
+            _toBeManualReferencedAssemblies = new List<Assembly>();
         }
 
-        private List<Assembly> _toBeManualReferencedAssemblies => new List<Assembly>();
+        private List<Assembly> _toBeManualReferencedAssemblies;
 
         public IEnumerable<PluginDescriptor> ReferencedPlugins { get; set; }
 
@@ -234,6 +241,7 @@ namespace Naruto.Plugins
             var assembly = Assembly.LoadFile(destFile.FullName);
 
             Debug.WriteLine("Adding to ToBeManualReferencedAssemblies: '{0}'", assembly.FullName);
+
             if (!_toBeManualReferencedAssemblies.Contains(assembly))
                 _toBeManualReferencedAssemblies.Add(assembly);
 

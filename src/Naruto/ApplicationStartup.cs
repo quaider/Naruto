@@ -28,7 +28,8 @@ namespace Naruto
         public void InitializePlugin(Action<IReadOnlyList<Assembly>> action)
         {
             PluginManager.Instance.Initialize();
-            action(PluginManager.Instance.GetManualReferencedAssembly());
+            var assemblies = PluginManager.Instance.GetManualReferencedAssembly();
+            action(assemblies);
         }
 
         public void RegisterBuilders()

@@ -1,0 +1,7 @@
+﻿{
+  "DisplayName": "PluginTest",
+  "SystemName": "Plugin.Test",
+  "DisplayOrder": 1,
+  "PluginFileName": "Plugin.Test.dll",
+  "Description": "PluginTest Description"
+}
