@@ -19,4 +19,7 @@
     <ProjectReference Include="..\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AspNetCore\Razor\" />
+  </ItemGroup>
 </Project>

@@ -29,46 +29,43 @@ namespace Naruto.AspNetCore
             var hostingEnvironment = provider.GetRequiredService<IHostingEnvironment>();
             NarutoPath.AppBaseDirectory = hostingEnvironment.ContentRootPath;
 
-            var startup = AddApplicationStartup();
-
             var mvcBuilder = services.AddMvc(opt =>
             {
-                
             });
 
-            startup.InitializePlugin((assemblies) =>
-            {
-                foreach (var ass in assemblies)
-                {
-                    mvcBuilder.PartManager.ApplicationParts.Add(new AssemblyPart(ass));
-                }
-
-            });
-
-            startup.Initialize();
+            AddApplicationStartup(mvcBuilder);
 
             //可做一些与services的集成操作
             var container = services.Populate(builder => builder.Populate(services));
-
-            AppDomain.CurrentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
-            {
-                var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
-                if (assembly != null)
-                    return assembly;
-
-                assembly = IocManager.Instance.Resolve<ITypeFinder>().GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
-                return assembly;
-            };
 
             //merge dependencies
             return new AutofacServiceProvider(container);
         }
 
-        private static ApplicationStartup AddApplicationStartup()
+        private static ApplicationStartup AddApplicationStartup(IMvcBuilder builder)
         {
             ApplicationStartup startup = new ApplicationStartup(IocManager.Instance);
             IocManager.Instance.RegisterInstance(startup, LifetimeStyle.Singleton);
+
+            //因为ApplicationManager在MVC包中，所以Naruto基础库不应该依赖此包
+            startup.OnInitializePlugin += (assemblies) =>
+            {
+                foreach (var ass in assemblies)
+                {
+                    builder.PartManager.ApplicationParts.Add(new AssemblyPart(ass));
+                }
+            };
+
+            startup.Initialize();
+
             return startup;
+        }
+
+        static void test()
+        {
+            Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine v;
+            Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine rzv;
+            Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions opt;
         }
     }
 }

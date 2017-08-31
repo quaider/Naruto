@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Naruto.Plugins
@@ -14,6 +15,8 @@ namespace Naruto.Plugins
 
         PluginDescriptor GetPluginDescriptorBySystemName<T>(string systemName, LoadPluginsMode loadMode = LoadPluginsMode.Installed)
             where T : class, IPlugin;
+
+		PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly);
 
         void ReloadPlugins();
     }

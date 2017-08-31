@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Naruto.Plugins
@@ -70,6 +71,12 @@ namespace Naruto.Plugins
         {
             _arePluginsLoaded = false;
             EnsurePluginsAreLoaded();
+        }
+
+        public PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly)
+        {
+            var descriptor = _plugins.FirstOrDefault(f => f.ReferencedAssembly == assembly);
+            return descriptor;
         }
     }
 }
