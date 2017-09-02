@@ -73,9 +73,10 @@ namespace Naruto.Plugins
             EnsurePluginsAreLoaded();
         }
 
-        public PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly)
+        public PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly, LoadPluginsMode loadMode = LoadPluginsMode.Installed)
         {
-            var descriptor = _plugins.FirstOrDefault(f => f.ReferencedAssembly == assembly);
+            var descriptor = GetPluginDescriptors(LoadPluginsMode.Installed)
+                .FirstOrDefault(f => f.ReferencedAssembly.FullName == assembly.FullName);
             return descriptor;
         }
     }

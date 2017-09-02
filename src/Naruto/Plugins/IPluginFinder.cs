@@ -16,7 +16,7 @@ namespace Naruto.Plugins
         PluginDescriptor GetPluginDescriptorBySystemName<T>(string systemName, LoadPluginsMode loadMode = LoadPluginsMode.Installed)
             where T : class, IPlugin;
 
-		PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly);
+        PluginDescriptor GetPluginDescriptorByAssembly(Assembly assembly, LoadPluginsMode loadMode = LoadPluginsMode.Installed);
 
         void ReloadPlugins();
     }

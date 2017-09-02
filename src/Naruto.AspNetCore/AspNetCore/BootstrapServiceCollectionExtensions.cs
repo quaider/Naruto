@@ -9,6 +9,8 @@ using Naruto.Constant;
 using Naruto.Reflection;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Naruto.AspNetCore
 {
@@ -22,7 +24,6 @@ namespace Naruto.AspNetCore
         public static IServiceProvider AddNaruto(this IServiceCollection services, Action<object> optionsAction)
         {
             optionsAction?.Invoke(new { });
-
             var provider = services.BuildServiceProvider();
 
             //set root path
@@ -31,6 +32,20 @@ namespace Naruto.AspNetCore
 
             var mvcBuilder = services.AddMvc(opt =>
             {
+
+            });
+
+            services.AddPluginViewLocations();
+
+            ApplicationModel application = null;
+            foreach (var controller in application.Controllers)
+            {
+                var type = controller.ControllerType.AsType();
+            }
+
+            services.Configure<MvcOptions>(opt =>
+            {
+                opt.Conventions
             });
 
             AddApplicationStartup(mvcBuilder);

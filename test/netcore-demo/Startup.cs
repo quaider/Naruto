@@ -44,19 +44,14 @@ namespace netcore_demo
                 app.UseExceptionHandler("/Error");
             }
 
-            var types = AppDomainTypeFinder.Instance.OfType<IPlugin>();
-            foreach (var t in types)
-            {
-                var ins = t.CreateInstance<IPlugin>();
-                //ins.Install();
-            }
-
-            //ApplicationPartManager: http://www.cnblogs.com/Leo_wl/p/6078434.html
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
+                //areas
+                routes.MapRoute(name: "areaRoute",
+                                      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
