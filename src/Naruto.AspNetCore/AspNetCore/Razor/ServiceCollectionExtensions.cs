@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 using Naruto.AspNetCore.Razor;
 
-namespace Naruto.AspNetCore
+namespace Naruto.AspNetCore.Razor
 {
     public static class ServiceCollectionExtensions
     {
@@ -11,11 +11,8 @@ namespace Naruto.AspNetCore
         {
             services.Configure<RazorViewEngineOptions>(opt =>
             {
-                //opt.ViewLocationExpanders.Add();
                 opt.ViewLocationExpanders.Add((new PluginViewLocationExpander()));
             });
-
-            //IRouteProvider a;
 
             return services;
         }

@@ -1,16 +1,13 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Hosting;
 using Autofac.Extensions.DependencyInjection;
 using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
 using Naruto.Dependency.Extensions;
-using Microsoft.AspNetCore.Hosting;
 using Naruto.Constant;
-using Naruto.Reflection;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Naruto.AspNetCore.Razor;
 
 namespace Naruto.AspNetCore
 {
@@ -32,28 +29,15 @@ namespace Naruto.AspNetCore
 
             var mvcBuilder = services.AddMvc(opt =>
             {
-
             });
 
             services.AddPluginViewLocations();
-
-            ApplicationModel application = null;
-            foreach (var controller in application.Controllers)
-            {
-                var type = controller.ControllerType.AsType();
-            }
-
-            services.Configure<MvcOptions>(opt =>
-            {
-                opt.Conventions
-            });
 
             AddApplicationStartup(mvcBuilder);
 
             //可做一些与services的集成操作
             var container = services.Populate(builder => builder.Populate(services));
 
-            //merge dependencies
             return new AutofacServiceProvider(container);
         }
 
@@ -74,13 +58,6 @@ namespace Naruto.AspNetCore
             startup.Initialize();
 
             return startup;
-        }
-
-        static void test()
-        {
-            Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine v;
-            Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine rzv;
-            Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions opt;
         }
     }
 }

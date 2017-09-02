@@ -31,6 +31,7 @@ namespace Naruto
         {
             InitializePlugin();
             RegisterBuilders();
+            InitAssemblyResolver();
         }
 
         public void InitializePlugin()
@@ -41,7 +42,6 @@ namespace Naruto
             if (OnInitializePlugin == null) throw new Exception("请先订阅 `OnInitializePlugin` ");
 
             OnInitializePlugin(assemblies);
-            InitAssemblyResolver();
         }
 
         public void RegisterBuilders()
@@ -56,13 +56,17 @@ namespace Naruto
         /// </summary>
         private void InitAssemblyResolver()
         {
+            //View渲染时，如果缺少程序集则动态查找程序集
             AppDomain.CurrentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
             {
                 var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
                 if (assembly != null)
                     return assembly;
 
-                assembly = IocManager.Resolve<ITypeFinder>().GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
+                //DO NOT USE IocManager.Resolve<ITypeFinder>() at here
+                //var finder = IocManager.Resolve<ITypeFinder>();
+                var finder = AppDomainTypeFinder.Instance;
+                assembly = finder.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
                 return assembly;
             };
         }

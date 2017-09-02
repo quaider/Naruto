@@ -2,7 +2,8 @@
 @{
     Layout = null;
 }
-
+@using Plugin.Test.Models;
+@model Person
 <!DOCTYPE html>
 
 <html>
@@ -11,6 +12,8 @@
     <title>Index</title>
 </head>
 <body>
-    a test
+    <p>
+        @Model.FullName / @Model.Age
+    </p>
 </body>
 </html>

@@ -33,6 +33,7 @@ namespace Naruto.Dependency
 
         public T Resolve<T>()
         {
+            var type = typeof(T);
             return Container.Resolve<T>();
         }
 
