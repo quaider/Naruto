@@ -1,9 +1,7 @@
 ﻿using Naruto.Dependency.Abstraction;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Text;
 
 namespace Naruto.Runtime.Caching
 {

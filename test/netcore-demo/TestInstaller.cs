@@ -12,12 +12,9 @@ namespace netcore_demo
     {
         public int Order => -100;
 
-        public void Install(IIocManager manager, ITypeFinder finder)
+        public void Install(IIocManager ioc, ITypeFinder finder)
         {
-            //IocManager.Instance.Register<RedisCacheOptions>(LifetimeStyle.Singleton);
-            //IocManager.Instance.Register<ICacheManager, RedisCacheManager>(LifetimeStyle.Singleton);
-            IocManager.Instance.Register<RedisCacheOptions>(LifetimeStyle.Singleton);
-            IocManager.Instance.Register<ICacheManager, RedisCacheManager>(LifetimeStyle.Singleton);
+            
         }
     }
 }

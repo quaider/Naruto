@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Naruto.Runtime.Caching.Configuration;
+﻿using Naruto.Runtime.Caching.Configuration;
 using Naruto.Dependency.Abstraction;
 
 namespace Naruto.Configuration.Startup

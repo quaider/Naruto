@@ -5,6 +5,6 @@ namespace Naruto.Runtime.Configuration.Redis
     {
         public string ConnectionString { get; set; }
 
-        public RedisCacheOptions RedisCacheOptions { get; set; }
+        public RedisCacheOptions CacheOptions { get; set; }
     }
 }
