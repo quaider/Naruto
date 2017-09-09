@@ -125,5 +125,12 @@ namespace Naruto.Reflection.Extensions
         {
             return Activator.CreateInstance(type, parms) as T;
         }
+
+        public static void InvokeMethod(this Type type, string methodName, object instance, params object[] parms)
+        {
+            var methodInfo = type.GetMethod(methodName);
+            //var methodInfo2 = type.GetMethod(methodName);
+            methodInfo.Invoke(instance, parms);
+        }
     }
 }

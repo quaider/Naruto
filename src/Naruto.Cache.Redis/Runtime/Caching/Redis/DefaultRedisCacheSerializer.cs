@@ -1,10 +1,11 @@
 ﻿using System;
 using StackExchange.Redis;
 using Naruto.Json;
+using Naruto.Dependency.Abstraction;
 
 namespace Naruto.Runtime.Caching.Redis
 {
-    public class DefaultRedisCacheSerializer : IRedisCacheSerializer
+    public class DefaultRedisCacheSerializer : IRedisCacheSerializer, ITransientDependency
     {
         public object Deserialize(RedisValue objbyte)
         {

@@ -10,19 +10,19 @@ namespace Naruto.Configuration.Startup
     {
         public IIocManager IocManager { get; }
 
-        public StartupConfiguration(IIocManager iocManager)
+        public StartupConfiguration(IIocManager manager)
         {
-            IocManager = iocManager;
+            IocManager = manager;
         }
 
         /// <summary>
         /// 缓存配置
         /// </summary>
-        public ICachingConfiguration Caching { get; private set; }
+        public ICachingConfiguration Caching { get; set; }
 
-        public void Initialize(ICachingConfiguration caching)
+        public void Initialize()
         {
-            Caching = caching;
+            Caching = IocManager.Resolve<ICachingConfiguration>();
         }
     }
 }

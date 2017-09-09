@@ -50,7 +50,7 @@ namespace Naruto.Plugins
 
         private PluginManager()
         {
-            _finder = AppDomainTypeFinder.Instance;
+            _finder = new BinFolderFinder();
 
             //AppDomain.CurrentDomain.BaseDirectory -> get the base directory that the assembly resolver uses to probe for assemblies
             var domainBaseDir = AppDomain.CurrentDomain.BaseDirectory;

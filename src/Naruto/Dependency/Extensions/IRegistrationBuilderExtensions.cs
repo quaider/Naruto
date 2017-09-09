@@ -1,8 +1,5 @@
 ﻿using Autofac.Builder;
 using Naruto.Dependency.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Naruto.Dependency.Extensions
 {

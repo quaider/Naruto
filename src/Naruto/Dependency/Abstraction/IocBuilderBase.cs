@@ -12,10 +12,10 @@ namespace Naruto.Dependency.Abstraction
         private IIocManager _iocManager;
         protected ITypeFinder Finder { get; private set; }
 
-        protected IocBuilderBase(IIocManager iocManager, ITypeFinder finder)
+        protected IocBuilderBase(IIocManager iocManager)
         {
             _iocManager = iocManager;
-            Finder = finder;
+            Finder = new BinFolderFinder();
         }
 
         public void Build()

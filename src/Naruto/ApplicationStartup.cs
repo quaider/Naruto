@@ -16,6 +16,8 @@ namespace Naruto
     {
         public IIocManager IocManager { get; }
 
+        public ITypeFinder Finder { get; }
+
         /// <summary>
         /// 插件初始化时，自定义操作逻辑，此处应该将插件程序集添加到ApplicationPartManager或BuildManager中
         /// </summary>
@@ -25,6 +27,7 @@ namespace Naruto
         public ApplicationStartup(IIocManager iocManager)
         {
             IocManager = iocManager;
+            Finder = new BinFolderFinder();
         }
 
         public void Initialize()
@@ -46,7 +49,7 @@ namespace Naruto
 
         public void RegisterBuilders()
         {
-            var builderTypes = AppDomainTypeFinder.Instance.OfType<IIocBuilder>();
+            var builderTypes = Finder.OfType<IIocBuilder>();
 
             new AutofacBuilderBase(IocManager).Build();
         }
@@ -63,10 +66,7 @@ namespace Naruto
                 if (assembly != null)
                     return assembly;
 
-                //DO NOT USE IocManager.Resolve<ITypeFinder>() at here
-                //var finder = IocManager.Resolve<ITypeFinder>();
-                var finder = AppDomainTypeFinder.Instance;
-                assembly = finder.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
+                assembly = Finder.GetAssemblies().FirstOrDefault(a => a.FullName == args.Name);
                 return assembly;
             };
         }

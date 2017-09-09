@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Naruto.AspNetCore;
-using Naruto.Dependency;
-using Naruto.Configuration.Startup;
-using Naruto.Reflection;
-using Naruto.Plugins;
-using Naruto.Reflection.Extensions;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Naruto.Runtime.Caching.Redis;
 
 namespace netcore_demo
 {
@@ -46,18 +40,7 @@ namespace netcore_demo
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                //areas
-                routes.MapRoute(name: "areaRoute",
-                                      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
-
-
+            app.UseNaruto();
         }
     }
 }

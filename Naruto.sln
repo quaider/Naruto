@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto", "src\Naruto\Naruto.csproj", "{7CA0B075-01D2-4D71-B88B-44FF22977138}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Cache.Redis", "src\Naruto.Cache.Redis\Naruto.Cache.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Redis", "src\Naruto.Cache.Redis\Naruto.Redis.csproj", "{8530D94B-E294-43DF-924C-210A5966591C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Reflection", "src\Naruto.Reflection\Naruto.Reflection.csproj", "{AA555234-0EA5-486E-B1D9-9A653DF96BD0}"
 EndProject
@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcore-demo", "test\netcor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.AspNetCore", "src\Naruto.AspNetCore\Naruto.AspNetCore.csproj", "{CE70E2CC-BBD2-405A-8490-F9B5C1A99959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Test", "test\Plugin.Test\Plugin.Test.csproj", "{4B0257EC-C537-4F64-A814-348601538B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Test", "test\Plugin.Test\Plugin.Test.csproj", "{4B0257EC-C537-4F64-A814-348601538B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

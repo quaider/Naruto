@@ -71,7 +71,7 @@ namespace Naruto.Dependency
 
         public void Register<TService>(LifetimeStyle lifetime)
         {
-            ContainerBuilder.RegisterType<TService>().AsLifeTime(lifetime);
+            ContainerBuilder.RegisterType<TService>().As<TService>().AsLifeTime(lifetime);
         }
 
         public void Register(Type type, LifetimeStyle lifetime)
@@ -96,19 +96,19 @@ namespace Naruto.Dependency
 
         public void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class
         {
-            ContainerBuilder.RegisterInstance(instance).AsSelf().AsLifeTime(lifetime);
+            ContainerBuilder.RegisterInstance(instance).As<TService>().AsSelf().AsLifeTime(lifetime);
         }
 
         public void RegisterInstance<TService>(object instance, LifetimeStyle lifetime) where TService : class
         {
             var convert = instance as TService;
             if (convert == null) throw new InvalidCastException($"the parameter `{nameof(instance)}` can not be cast to type `{typeof(TService)}` ");
-            ContainerBuilder.RegisterInstance(convert).AsSelf().AsLifeTime(lifetime);
+            ContainerBuilder.RegisterInstance(convert).As<TService>().AsSelf().AsLifeTime(lifetime);
         }
 
         public void RegisterInstance<TService>(string name, object instance, LifetimeStyle lifetime) where TService : class
         {
-            ContainerBuilder.RegisterInstance(instance).Named<TService>(name).AsLifeTime(lifetime);
+            ContainerBuilder.RegisterInstance(instance).Named<TService>(name).As<TService>().AsLifeTime(lifetime);
         }
 
         public void Register<TService>(Func<IComponentContext, TService> factory, LifetimeStyle lifetime)

@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Naruto.AspNetCore\Naruto.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Naruto.Cache.Redis\Naruto.Redis.csproj" />
     <ProjectReference Include="..\..\src\Naruto\Naruto.csproj" />
     <ProjectReference Include="..\..\src\Naruto.Reflection\Naruto.Reflection.csproj" />
   </ItemGroup>
