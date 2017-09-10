@@ -1,8 +1,5 @@
-﻿using Naruto.Runtime.Caching;
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Naruto.Runtime.Caching.Redis
 {
@@ -30,7 +27,8 @@ namespace Naruto.Runtime.Caching.Redis
         {
             if (value == null)
             {
-                throw new Exception("Can not insert null values to the cache!");
+                Remove(key);
+                return;
             }
 
             var type = value.GetType();

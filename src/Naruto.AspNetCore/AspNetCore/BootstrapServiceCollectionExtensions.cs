@@ -27,7 +27,7 @@ namespace Naruto.AspNetCore
         {
             var startupConfiguration = IocManager.Instance.Resolve<IStartupConfiguration>();
             //为了封闭StartupConfiguration给外部，更好的方案？
-            startupConfiguration.GetType().InvokeMethod("Initialize", startupConfiguration, null);
+            startupConfiguration.GetType().InvokeMethod("Initialize", startupConfiguration);
 
             app.UseMvc(routes =>
             {
