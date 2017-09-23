@@ -1,26 +1,22 @@
-﻿using StackExchange.Redis;
+﻿using Naruto.Redis;
 using System;
 
 namespace Naruto.Runtime.Caching.Redis
 {
     public class RedisCache : CacheBase
     {
-        private readonly IDatabase _database;
-        private readonly IRedisCacheSerializer _serializer;
+        private readonly RedisService _service;
 
         public RedisCache(
             string name,
-            IRedisCacheDatabaseProvider redisCacheDatabaseProvider,
-            IRedisCacheSerializer redisCacheSerializer) : base(name)
+            RedisService redisService) : base(name)
         {
-            _database = redisCacheDatabaseProvider.GetDatabase();
-            _serializer = redisCacheSerializer;
+            _service = redisService;
         }
 
         public override object GetOrDefault(string key)
         {
-            var objbyte = _database.StringGet(key);
-            return objbyte.HasValue ? Deserialize(objbyte) : null;
+            return _service.StringGet(key);
         }
 
         public override void Set(string key, object value, TimeSpan? slidingExpireTime = null, TimeSpan? absoluteExpireTime = null)
@@ -31,32 +27,17 @@ namespace Naruto.Runtime.Caching.Redis
                 return;
             }
 
-            var type = value.GetType();
-            _database.StringSet(
-                key,
-                Serialize(value, type),
-                absoluteExpireTime ?? slidingExpireTime ?? DefaultAbsoluteExpireTime ?? DefaultSlidingExpireTime
-            );
+            _service.StringSet(key, value, absoluteExpireTime ?? slidingExpireTime ?? DefaultAbsoluteExpireTime ?? DefaultSlidingExpireTime);
         }
 
         public override void Remove(string key)
         {
-            _database.KeyDelete(key);
+            _service.Remove(key);
         }
 
         public override void Clear()
         {
-            _database.KeyDeleteWithPrefix("*");
-        }
-
-        protected virtual string Serialize(object value, Type type)
-        {
-            return _serializer.Serialize(value, type);
-        }
-
-        protected virtual object Deserialize(RedisValue objbyte)
-        {
-            return _serializer.Deserialize(objbyte);
+            _service.Clear();
         }
     }
 }

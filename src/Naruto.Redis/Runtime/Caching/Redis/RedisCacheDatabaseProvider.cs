@@ -1,28 +1,22 @@
-﻿using Naruto.Runtime.Configuration.Redis;
-using StackExchange.Redis;
-using System;
+﻿using StackExchange.Redis;
+using Naruto.Runtime.Configuration.Redis;
+using Naruto.Redis.Providers;
 
 namespace Naruto.Runtime.Caching.Redis
 {
-    public class RedisCacheDatabaseProvider : IRedisCacheDatabaseProvider
+    public class RedisCacheDatabaseProvider : RedisDatabaseProvider
     {
-        private readonly RedisCacheOptions _options;
-        private readonly Lazy<ConnectionMultiplexer> _connectionMultiplexer;
+        private readonly RedisOptions _options;
 
-        public RedisCacheDatabaseProvider(RedisCacheOptions options)
+        public RedisCacheDatabaseProvider(RedisOptions options, IRedisConnectionProvider connectionProvider)
+            : base(options, connectionProvider)
         {
             _options = options;
-            _connectionMultiplexer = new Lazy<ConnectionMultiplexer>(CreateConnectionMultiplexer);
         }
 
-        public IDatabase GetDatabase()
+        public override IDatabase GetDatabase()
         {
-            return _connectionMultiplexer.Value.GetDatabase(_options.DatabaseId);
-        }
-
-        private ConnectionMultiplexer CreateConnectionMultiplexer()
-        {
-            return ConnectionMultiplexer.Connect(_options.ConnectionString);
+            return GetDatabase(_options.CacheOptions.DatabaseId);
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Naruto.Json
 {
@@ -22,8 +18,6 @@ namespace Naruto.Json
             {
                 options.Formatting = Formatting.Indented;
             }
-
-            //options.Converters.Insert(0, new IsoDateTimeConverter());
 
             return JsonConvert.SerializeObject(obj, options);
         }

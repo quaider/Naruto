@@ -16,7 +16,12 @@ namespace Naruto.Redis.Providers
 
         public virtual IDatabase GetDatabase()
         {
-            return _connectionProvider.GetConnection().Value.GetDatabase(_options.DefaultDatabaseId);
+            return GetDatabase(_options.DefaultDatabaseId);
+        }
+
+        protected IDatabase GetDatabase(int db)
+        {
+            return _connectionProvider.GetConnection().Value.GetDatabase(db);
         }
     }
 }

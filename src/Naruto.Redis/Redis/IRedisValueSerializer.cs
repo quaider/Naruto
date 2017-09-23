@@ -8,7 +8,7 @@ namespace Naruto.Runtime.Caching.Redis
     /// <summary>
     /// 用于从redis存储数据和获取数据时，提供序列化操作
     /// </summary>
-    public interface IRedisCacheSerializer
+    public interface IRedisValueSerializer
     {
         /// <summary>
         /// 反序列化
@@ -16,6 +16,8 @@ namespace Naruto.Runtime.Caching.Redis
         /// <param name="objbyte">RedisValue</param>
         /// <returns>返回一个对象</returns>
         object Deserialize(RedisValue objbyte);
+
+        T Deserialize<T>(RedisValue objbyte);
 
         /// <summary>
         /// 序列化

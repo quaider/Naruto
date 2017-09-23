@@ -6,10 +6,10 @@ namespace Naruto.Redis.Providers
 {
     internal class RedisConnectionProvider : IRedisConnectionProvider
     {
-        private readonly RedisCacheOptions _options;
+        private readonly RedisOptions _options;
         private readonly Lazy<ConnectionMultiplexer> _connectionMultiplexer;
 
-        public RedisConnectionProvider(RedisCacheOptions options)
+        public RedisConnectionProvider(RedisOptions options)
         {
             _options = options;
             _connectionMultiplexer = new Lazy<ConnectionMultiplexer>(CreateConnectionMultiplexer);

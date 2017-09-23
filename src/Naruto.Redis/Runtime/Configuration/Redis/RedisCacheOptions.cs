@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Naruto.Runtime.Configuration.Redis
 {
-    public class RedisCacheOptions : NarutoRedisOptions
+    public class RedisCacheOptions
     {
+        public int DatabaseId { get; set; }
     }
 }
