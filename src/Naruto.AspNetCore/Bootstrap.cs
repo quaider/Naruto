@@ -44,14 +44,14 @@ namespace Naruto
 
             configure?.Invoke();
 
-            //可做一些与services的集成操作
-            _container = Services.Populate(builder => builder.Populate(Services));
-
             return this;
         }
 
         public IServiceProvider Build()
         {
+            //可做一些与services的集成操作
+            _container = Services.Populate(builder => builder.Populate(Services));
+
             return new AutofacServiceProvider(_container);
         }
 

@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Naruto.Runtime.Caching
 {
-    public abstract class CacheManagerBase : ICacheManager, ISingletonDependency
+    public abstract class CacheManagerBase : ICacheManager
     {
         protected readonly IIocManager IocManager;
 

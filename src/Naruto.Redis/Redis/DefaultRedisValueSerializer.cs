@@ -5,7 +5,7 @@ using Naruto.Dependency.Abstraction;
 
 namespace Naruto.Runtime.Caching.Redis
 {
-    public class DefaultRedisValueSerializer : IRedisValueSerializer, ITransientDependency
+    public class DefaultRedisValueSerializer : IRedisValueSerializer
     {
         public object Deserialize(RedisValue objbyte)
         {

@@ -3,6 +3,8 @@ using Naruto.Runtime.Configuration.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Naruto.Dependency.Abstraction;
+using Naruto.Redis.Providers;
+using Naruto.Dependency;
 
 namespace Naruto.Runtime.Caching.Redis
 {
@@ -10,22 +12,28 @@ namespace Naruto.Runtime.Caching.Redis
     {
         public static INarutoServiceProvider AddRedisOptions(this INarutoServiceProvider provider)
         {
-            return provider.AddRedisOptions(_ => { });
+            return provider.AddRedisOptions(option => option.UseRedisCache());
         }
 
-        public static INarutoServiceProvider AddRedisOptions(this INarutoServiceProvider provider, Action<RedisCacheOptions> optionsAction)
+        public static INarutoServiceProvider AddRedisOptions(this INarutoServiceProvider provider, Action<RedisOptions> optionsAction)
         {
-            provider.Services.AddSingleton<ICacheManager, RedisCacheManager>();
+            IocManager.Instance.Register<IRedisConnectionProvider, RedisConnectionProvider>(LifetimeStyle.Singleton);
+            IocManager.Instance.Register<IRedisDatabaseProvider, RedisDatabaseProvider>(LifetimeStyle.Singleton);
+            IocManager.Instance.Register<IRedisValueSerializer, DefaultRedisValueSerializer>(LifetimeStyle.Transient);
 
             var redisOptions = new RedisOptions();
-
             var section = provider.Configuration.GetSection("Naruto:Redis");
             section.Bind(redisOptions);
 
-            provider.Services.AddSingleton<RedisOptions>(redisOptions);
-            provider.Services.AddSingleton<RedisCacheOptions>(redisOptions.CacheOptions);
+            optionsAction?.Invoke(redisOptions);
 
-            optionsAction(redisOptions.CacheOptions);
+            if (redisOptions.EnableCache)
+            {
+                IocManager.Instance.Register<IRedisCacheDatabaseProvider, RedisCacheDatabaseProvider>(LifetimeStyle.Singleton);
+                IocManager.Instance.Register<ICacheManager, RedisCacheManager>(LifetimeStyle.Singleton);
+            }
+
+            provider.Services.AddSingleton<RedisOptions>(redisOptions);
 
             return provider;
         }

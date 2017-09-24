@@ -1,9 +1,11 @@
-﻿using Naruto.Runtime.Configuration.Redis;
+﻿using Naruto.Dependency;
+using Naruto.Runtime.Caching.Redis;
+using Naruto.Runtime.Configuration.Redis;
 using StackExchange.Redis;
 
 namespace Naruto.Redis.Providers
 {
-    public class RedisDatabaseProvider : IRedisDatabaseProvider
+    internal class RedisDatabaseProvider : IRedisDatabaseProvider
     {
         private readonly RedisOptions _options;
         private readonly IRedisConnectionProvider _connectionProvider;
@@ -17,6 +19,11 @@ namespace Naruto.Redis.Providers
         public virtual IDatabase GetDatabase()
         {
             return GetDatabase(_options.DefaultDatabaseId);
+        }
+
+        public RedisService GetService()
+        {
+            return new RedisService(this, IocManager.Instance.Resolve<IRedisValueSerializer>());
         }
 
         protected IDatabase GetDatabase(int db)

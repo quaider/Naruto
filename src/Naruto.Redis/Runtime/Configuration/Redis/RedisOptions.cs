@@ -7,6 +7,13 @@ namespace Naruto.Runtime.Configuration.Redis
 
         public int DefaultDatabaseId { get; set; } = -1;
 
+        public bool EnableCache { get; set; }
+
         public RedisCacheOptions CacheOptions { get; set; }
+
+        public void UseRedisCache()
+        {
+            EnableCache = true;
+        }
     }
 }

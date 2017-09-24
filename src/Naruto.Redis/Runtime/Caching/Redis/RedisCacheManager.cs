@@ -12,7 +12,7 @@ namespace Naruto.Runtime.Caching.Redis
         {
             var redisCacheProvider = IocManager.Resolve<RedisCacheDatabaseProvider>();
             var serializer = IocManager.Resolve<IRedisValueSerializer>();
-            _redisService = new RedisService(redisCacheProvider, serializer);
+            _redisService = redisCacheProvider.GetService();
         }
 
         protected override ICache CreateCacheImplementation(string name)

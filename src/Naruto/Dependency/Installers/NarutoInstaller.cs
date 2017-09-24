@@ -6,6 +6,7 @@ using Naruto.Reflection;
 using Naruto.Runtime.Caching;
 using Naruto.Runtime.Caching.Configuration;
 using Naruto.Plugins;
+using Naruto.Runtime.Caching.Memory;
 
 namespace Naruto.Dependency.Installers
 {
@@ -16,6 +17,7 @@ namespace Naruto.Dependency.Installers
             manager.Register<IPluginFinder, PluginFinder>(LifetimeStyle.Scoped);
             manager.Register<IStartupConfiguration, StartupConfiguration>(LifetimeStyle.Singleton);
             manager.RegisterInstance<ICachingConfiguration>(InstallCaches(), LifetimeStyle.Singleton);
+            manager.Register<ICacheManager, MemoryCacheManager>(LifetimeStyle.Singleton);
         }
 
         private CachingConfiguration InstallCaches()

@@ -71,7 +71,7 @@ namespace Naruto.Dependency
 
         public void Register<TService>(LifetimeStyle lifetime)
         {
-            ContainerBuilder.RegisterType<TService>().As<TService>().AsLifeTime(lifetime);
+            ContainerBuilder.RegisterType<TService>().As<TService>().AsSelf().AsLifeTime(lifetime);
         }
 
         public void Register(Type type, LifetimeStyle lifetime)
@@ -81,17 +81,17 @@ namespace Naruto.Dependency
 
         public void Register<TService, TImpl>(LifetimeStyle lifetime)
         {
-            ContainerBuilder.RegisterType<TImpl>().As<TService>().AsLifeTime(lifetime);
+            ContainerBuilder.RegisterType<TImpl>().As<TService>().AsSelf().AsLifeTime(lifetime);
         }
 
         public void Register(Type service, Type impl, LifetimeStyle lifetime)
         {
-            ContainerBuilder.RegisterType(impl).As(service).AsLifeTime(lifetime);
+            ContainerBuilder.RegisterType(impl).As(service).AsSelf().AsLifeTime(lifetime);
         }
 
         public void Register<TService>(string name, LifetimeStyle lifetime)
         {
-            ContainerBuilder.RegisterType<TService>().Named<TService>(name).AsLifeTime(lifetime);
+            ContainerBuilder.RegisterType<TService>().Named<TService>(name).AsSelf().AsLifeTime(lifetime);
         }
 
         public void RegisterInstance<TService>(TService instance, LifetimeStyle lifetime) where TService : class
@@ -113,7 +113,7 @@ namespace Naruto.Dependency
 
         public void Register<TService>(Func<IComponentContext, TService> factory, LifetimeStyle lifetime)
         {
-            ContainerBuilder.Register(ctx => factory(ctx)).AsLifeTime(lifetime);
+            ContainerBuilder.Register(ctx => factory(ctx)).AsSelf().AsLifeTime(lifetime);
         }
 
         #endregion

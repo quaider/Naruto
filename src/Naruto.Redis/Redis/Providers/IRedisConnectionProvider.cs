@@ -4,7 +4,7 @@ using System;
 
 namespace Naruto.Redis.Providers
 {
-    public interface IRedisConnectionProvider : ISingletonDependency
+    public interface IRedisConnectionProvider
     {
         Lazy<ConnectionMultiplexer> GetConnection();
     }
