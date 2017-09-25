@@ -23,7 +23,7 @@ namespace Naruto.Redis.Providers
 
         public RedisService GetService()
         {
-            return new RedisService(this, IocManager.Instance.Resolve<IRedisValueSerializer>());
+            return new RedisService(this);
         }
 
         protected IDatabase GetDatabase(int db)

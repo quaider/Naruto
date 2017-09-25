@@ -19,11 +19,13 @@ namespace Naruto.Runtime.Caching.Redis
         {
             IocManager.Instance.Register<IRedisConnectionProvider, RedisConnectionProvider>(LifetimeStyle.Singleton);
             IocManager.Instance.Register<IRedisDatabaseProvider, RedisDatabaseProvider>(LifetimeStyle.Singleton);
-            IocManager.Instance.Register<IRedisValueSerializer, DefaultRedisValueSerializer>(LifetimeStyle.Transient);
 
             var redisOptions = new RedisOptions();
-            var section = provider.Configuration.GetSection("Naruto:Redis");
-            section.Bind(redisOptions);
+            if (provider.Configuration != null)
+            {
+                var section = provider.Configuration.GetSection("Naruto:Redis");
+                section.Bind(redisOptions);
+            }
 
             optionsAction?.Invoke(redisOptions);
 

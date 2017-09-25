@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Test", "test\Plugin.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Naruto.Redis", "src\Naruto.Redis\Naruto.Redis.csproj", "{F6C76EA1-0E24-4232-A90A-BA6D30D6728A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "test\ConsoleTest\ConsoleTest.csproj", "{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,14 @@ Global
 		{F6C76EA1-0E24-4232-A90A-BA6D30D6728A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6C76EA1-0E24-4232-A90A-BA6D30D6728A}.Release|x86.ActiveCfg = Release|Any CPU
 		{F6C76EA1-0E24-4232-A90A-BA6D30D6728A}.Release|x86.Build.0 = Release|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Debug|x86.Build.0 = Debug|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Release|x86.ActiveCfg = Release|Any CPU
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +95,7 @@ Global
 		{CE70E2CC-BBD2-405A-8490-F9B5C1A99959} = {3F30D2E9-8E25-48DD-91ED-94ECAEE5EFA8}
 		{4B0257EC-C537-4F64-A814-348601538B89} = {EFAA8D0B-70AC-4FDB-9FD8-3625759FEA50}
 		{F6C76EA1-0E24-4232-A90A-BA6D30D6728A} = {3F30D2E9-8E25-48DD-91ED-94ECAEE5EFA8}
+		{43C992A3-0D19-49E5-AAB4-2A361B1F42C7} = {EFAA8D0B-70AC-4FDB-9FD8-3625759FEA50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9A50DC7-C5B8-498F-B76E-52D6E7BCA480}

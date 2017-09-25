@@ -18,7 +18,7 @@ namespace Naruto.AspNetCore
 
         public static INarutoServiceProvider AddNaruto(this IServiceCollection services, IConfigurationRoot configuration, Action configure)
         {
-            var bootstrap = new Bootstrap(configuration, services);
+            var bootstrap = new AspNetCoreServiceProvider(configuration, services);
 
             return bootstrap.ConfigureService(configure);
         }

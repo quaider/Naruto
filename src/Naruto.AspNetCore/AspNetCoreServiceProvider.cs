@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,11 +9,10 @@ using Naruto.Constant;
 using Naruto.Dependency;
 using Naruto.Dependency.Abstraction;
 using Naruto.Dependency.Extensions;
-using System;
 
 namespace Naruto
 {
-    internal class Bootstrap : INarutoServiceProvider
+    internal class AspNetCoreServiceProvider : INarutoServiceProvider
     {
         private IContainer _container;
 
@@ -20,13 +20,13 @@ namespace Naruto
 
         public IConfigurationRoot Configuration { get; }
 
-        public Bootstrap(IConfigurationRoot configuration, IServiceCollection services)
+        public AspNetCoreServiceProvider(IConfigurationRoot configuration, IServiceCollection services)
         {
             Configuration = configuration;
             Services = services;
         }
 
-        public Bootstrap ConfigureService(Action configure)
+        public AspNetCoreServiceProvider ConfigureService(Action configure)
         {
             var provider = Services.BuildServiceProvider();
 

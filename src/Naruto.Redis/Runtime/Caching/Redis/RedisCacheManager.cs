@@ -11,7 +11,6 @@ namespace Naruto.Runtime.Caching.Redis
             : base(iocManager)
         {
             var redisCacheProvider = IocManager.Resolve<RedisCacheDatabaseProvider>();
-            var serializer = IocManager.Resolve<IRedisValueSerializer>();
             _redisService = redisCacheProvider.GetService();
         }
 
