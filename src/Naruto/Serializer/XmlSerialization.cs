@@ -78,13 +78,13 @@ namespace Naruto.Serializer
         /// </summary>
         public static T Deserialize<T>(byte[] value) where T : class
         {
-            return Deserialize(value, typeof(T)) as T;
+            return DeserializeFromBytes(value, typeof(T)) as T;
         }
 
         /// <summary>
         /// xml形式的byte[]反序列化成.net object
         /// </summary>
-        public static object Deserialize(byte[] value, Type type)
+        public static object DeserializeFromBytes(byte[] value, Type type)
         {
             var serializer = new XmlSerializer(type);
             using (var stream = new MemoryStream(value))

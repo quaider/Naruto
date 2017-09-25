@@ -171,15 +171,15 @@ namespace Naruto.Serializer
         /// <summary>
         /// byte[]反序列化成.net object
         /// </summary>
-        public static object DeserializeBytes(byte[] bytes)
+        public static object DeserializeFromBytes(byte[] bytes)
         {
-            return DeserializeBytes<object>(bytes);
+            return DeserializeFromBytes<object>(bytes);
         }
 
         /// <summary>
         /// 将byte[]反序列化成指定类型的对象
         /// </summary>
-        public static T DeserializeBytes<T>(byte[] bytes)
+        public static T DeserializeFromBytes<T>(byte[] bytes)
         {
             var serializer = new JsonSerializer();
             using (var stream = new MemoryStream(bytes))
